@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Prime Vanguard Wheel of Mastery - Assess your life across 5 non-negotiable pillars: Faith, Fitness, Finance, Personal Development, and Legacy. Build a balanced life of excellence.">
+    <meta name="keywords" content="Prime Vanguard, Wheel of Life, personal development, faith, fitness, finance, legacy, brotherhood, mastery">
+    <meta name="author" content="Prime Vanguard">
+    <meta property="og:title" content="Prime Vanguard | The Wheel of Mastery">
+    <meta property="og:description" content="Assess your life across 5 non-negotiable pillars. Build a balanced life of excellence.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prime Vanguard | The Wheel of Mastery">
+    <meta name="twitter:description" content="Assess your life across 5 non-negotiable pillars. Build a balanced life of excellence.">
+    <link rel="canonical" href="https://primevanguard.com/wheel-of-life">
+    <link rel="icon" type="image/png" href="public/Prime Vanguard-Logo.png">
+    <title>Prime Vanguard | The Wheel of Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" integrity="sha384-" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/tajawal@5.0.16/index.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="overflow-x-hidden">
+    <a href="#wheel" class="skip-to-main" tabindex="1">Skip to main content</a>
+
+    <!-- Header -->
+    <header id="mainHeader" class="sticky top-0 z-50 transition-all duration-300" role="banner">
+        <!-- Scroll Progress Bar -->
+        <div id="scrollProgress" class="h-1 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] w-0 transition-all duration-150 ease-out" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="#wheel" class="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity" aria-label="Prime Vanguard - Return to top">
+                    <img src="public/Prime Vanguard-Logo.png" alt="Prime Vanguard Logo" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full animate-glow">
+                    <div>
+                        <h1 class="text-xs sm:text-sm font-bold text-white tracking-wider">PRIME VANGUARD</h1>
+                        <p class="text-[10px] sm:text-xs text-[#D4AF37] font-tajawal">The Wheel of Mastery</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+                <a href="#wheel" class="nav-link px-4 py-2 rounded-lg text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 text-sm font-medium relative group" title="Go to Your Wheel section">
+                    Your Wheel
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
+                </a>
+                <a href="#pillars" class="nav-link px-4 py-2 rounded-lg text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 text-sm font-medium relative group" title="Go to 5 Pillars section">
+                    5 Pillars
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
+                </a>
+                <a href="#methodology" class="nav-link px-4 py-2 rounded-lg text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 text-sm font-medium relative group" title="Go to Methodology section">
+                    Methodology
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
+                </a>
+                <a href="#philosophy" class="nav-link px-4 py-2 rounded-lg text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 text-sm font-medium relative group" title="Go to Philosophy section">
+                    Philosophy
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
+                </a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden touch-btn p-2 text-[#D4AF37] rounded-lg hover:bg-[#D4AF37]/10 transition-all duration-200" aria-label="Open menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobileMenuBackdrop" class="mobile-menu-backdrop md:hidden"></div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 h-full bg-[#0F172A] backdrop-blur-xl border-l border-[#D4AF37]/20 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
+            <div class="h-full flex flex-col">
+                <!-- Mobile Menu Header -->
+                <div class="flex items-center justify-between p-6 border-b border-[#D4AF37]/20">
+                    <div class="flex items-center gap-3">
+                        <img src="public/Prime Vanguard-Logo.png" alt="Prime Vanguard Logo" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="text-sm font-bold text-white tracking-wider">PRIME VANGUARD</h2>
+                            <p class="text-xs text-[#D4AF37] font-tajawal">The Wheel of Mastery</p>
+                        </div>
+                    </div>
+                    <button id="closeMenuBtn" class="touch-btn p-2 text-[#D4AF37] rounded-lg hover:bg-[#D4AF37]/10 transition-all duration-200" aria-label="Close menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Links -->
+                <nav class="flex-1 px-6 py-8 space-y-2" aria-label="Mobile navigation">
+                    <a href="#wheel" class="mobile-nav-link flex items-center gap-4 p-4 rounded-xl text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 group" title="Go to Your Wheel section">
+                        <span class="text-2xl" aria-hidden="true">🎯</span>
+                        <div class="flex-1">
+                            <span class="block font-semibold">Your Wheel</span>
+                            <span class="block text-xs text-gray-500">Assess your mastery</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 group-hover:text-[#D4AF37] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="#pillars" class="mobile-nav-link flex items-center gap-4 p-4 rounded-xl text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 group" title="Go to 5 Pillars section">
+                        <span class="text-2xl" aria-hidden="true">🏛️</span>
+                        <div class="flex-1">
+                            <span class="block font-semibold">5 Pillars</span>
+                            <span class="block text-xs text-gray-500">The foundation</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 group-hover:text-[#D4AF37] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="#methodology" class="mobile-nav-link flex items-center gap-4 p-4 rounded-xl text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 group" title="Go to Methodology section">
+                        <span class="text-2xl" aria-hidden="true">⚙️</span>
+                        <div class="flex-1">
+                            <span class="block font-semibold">Methodology</span>
+                            <span class="block text-xs text-gray-500">How it works</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 group-hover:text-[#D4AF37] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="#philosophy" class="mobile-nav-link flex items-center gap-4 p-4 rounded-xl text-gray-300 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all duration-200 group" title="Go to Philosophy section">
+                        <span class="text-2xl" aria-hidden="true">📜</span>
+                        <div class="flex-1">
+                            <span class="block font-semibold">Philosophy</span>
+                            <span class="block text-xs text-gray-500">Our principles</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 group-hover:text-[#D4AF37] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </nav>
+                
+                <!-- Mobile Menu Footer -->
+                <div class="p-6 border-t border-[#D4AF37]/20">
+                    <div class="glass-card rounded-xl p-4">
+                        <p class="text-xs text-gray-400 text-center">Excellence over ease. Brotherhood over ego.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 wheel-bg"></div>
+        <div class="absolute top-10 right-10 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#D4AF37]/5 blur-3xl"></div>
+        <div class="absolute bottom-10 left-10 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#10B981]/5 blur-3xl"></div>
+        
+        <div class="max-w-5xl mt-12 mx-auto text-center relative z-10 animate-slide-up">
+            <div class="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-wider mb-4 sm:mb-6">
+                THE PRIME VANGUARD WHEEL
+            </div>
+            <h2 class="responsive-h1 font-bold mb-4 sm:mb-6">
+                A Wheel Only Rolls Smoothly<br class="hidden sm:block">
+                <span class="gradient-text">When All Five Pillars Are Forged</span>
+            </h2>
+            <p class="responsive-body text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8">
+                We've customized the traditional Wheel of Life into our <strong class="text-[#D4AF37]">5 Non-Negotiable Pillars of Mastery</strong>. 
+                Faith is the axle. The rest are the spokes. If one breaks, the entire wheel collapses.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+                <a href="#wheel" class="touch-btn px-6 sm:px-8 py-3 rounded-lg bg-[#D4AF37] text-[#0F172A] font-bold hover:bg-[#E5C158] transition pulse-gold text-center">
+                    Assess Your Wheel
+                </a>
+                <a href="#pillars" class="touch-btn px-6 sm:px-8 py-3 rounded-lg border border-[#D4AF37]/40 text-[#D4AF37] font-bold hover:bg-[#D4AF37]/10 transition text-center">
+                    Explore the Pillars
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Wheel Section -->
+    <section id="wheel" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h3 class="responsive-h2 font-bold mb-3 sm:mb-4">Your <span class="gradient-text">Mastery Wheel</span></h3>
+                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">Rate each pillar from 1-10. Watch your wheel transform in real-time. Identify your "flat tires" and get your personalized PV prescription.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+                <!-- Chart Side -->
+                <div class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 relative order-1">
+                    <div class="absolute top-3 right-3 sm:top-4 sm:right-4 text-[10px] sm:text-xs text-gray-500">LIVE ASSESSMENT</div>
+                    <div class="chart-container">
+                        <canvas id="masteryChart"></canvas>
+                    </div>
+                    <div class="mt-4 sm:mt-6 text-center">
+                        <div class="text-xs sm:text-sm text-gray-400 mb-1">Overall Mastery Score</div>
+                        <div class="text-4xl sm:text-5xl font-bold score-display gradient-text" id="overallScore">0.0</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 mt-1" id="scoreLabel">Begin your assessment</div>
+                    </div>
+                </div>
+
+                <!-- Sliders Side -->
+                <div class="space-y-3 sm:space-y-4 order-2" id="slidersContainer">
+                    <!-- Sliders injected by JS -->
+                </div>
+            </div>
+
+            <!-- Insights Panel -->
+            <div id="insightsPanel" class="mt-6 sm:mt-8 glass-card rounded-2xl p-4 sm:p-6 md:p-8 hidden">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D4AF37]/20 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h4 class="text-lg sm:text-xl font-bold text-[#D4AF37]">PV Diagnostic Report</h4>
+                </div>
+                <div id="insightsContent" class="space-y-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 5 Pillars Section -->
+    <section id="pillars" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-[#0F172A]/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h3 class="responsive-h2 font-bold mb-3 sm:mb-4">The <span class="gradient-text">5 Pillars of Mastery</span></h3>
+                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">Each pillar has a role. Each role is non-negotiable. Understand what each one represents in your life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="pillarsGrid">
+                <!-- Pillars injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h3 class="responsive-h2 font-bold mb-3 sm:mb-4">How the Wheel Drives <span class="gradient-text">Our Methodology</span></h3>
+                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">We don't just ask you to draw a wheel and look at it. That violates our <strong class="text-[#D4AF37]">"Action over Theory"</strong> principle. We use it to engineer your entire experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div class="glass-card rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">🎯</div>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-bold text-white">A. The Onboarding Diagnostic</h4>
+                            <p class="text-[10px] sm:text-xs text-[#D4AF37]">Finding the "Flat Tires"</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">During onboarding, you rate yourself 1-10 on each pillar. If you score a 9 in Finance but a 3 in Fitness and a 2 in Faith, the management team immediately identifies your "flat tires."</p>
+                    <div class="mt-3 sm:mt-4 p-3 rounded-lg bg-[#EF4444]/10 border border-[#EF4444]/30">
+                        <p class="text-[10px] sm:text-xs text-[#EF4444] font-semibold">⚠️ The Result:</p>
+                        <p class="text-[10px] sm:text-xs text-gray-300 mt-1">You're not allowed to just talk about business. Your first 30-day contract focuses on fixing Fajr prayer and hitting the gym.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">👥</div>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-bold text-white">B. Targeted Accountability Pods</h4>
+                            <p class="text-[10px] sm:text-xs text-[#D4AF37]">Groups of 4-5 Brothers</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">Members are placed in Pods based on their Wheel. We group men with similar "weak spots" so they can drag each other across the finish line.</p>
+                    <div class="mt-3 sm:mt-4 p-3 rounded-lg bg-[#10B981]/10 border border-[#10B981]/30">
+                        <p class="text-[10px] sm:text-xs text-[#10B981] font-semibold">✓ Example:</p>
+                        <p class="text-[10px] sm:text-xs text-gray-300 mt-1">If your Pod struggles with Personal Development, the Pod Leader assigns a specific book to tackle together that week.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">🏆</div>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-bold text-white">C. Weekly Challenges</h4>
+                            <p class="text-[10px] sm:text-xs text-[#D4AF37]">Fixing the Wheel</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">Our weekly Telegram challenges target the slices you neglect:</p>
+                    <ul class="mt-3 space-y-2 text-[10px] sm:text-xs text-gray-300">
+                        <li class="flex items-start gap-2"><span class="text-[#D4AF37] flex-shrink-0">•</span> Faith flat? → <strong>Fajr Frontline</strong> challenge</li>
+                        <li class="flex items-start gap-2"><span class="text-[#D4AF37] flex-shrink-0">•</span> Fitness flat? → <strong>4-Liter & Iron Protocol</strong></li>
+                        <li class="flex items-start gap-2"><span class="text-[#D4AF37] flex-shrink-0">•</span> Legacy flat? → <strong>Brotherhood Lifeline</strong> challenge</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">📊</div>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-bold text-white">D. Legacy Builder Dashboard</h4>
+                            <p class="text-[10px] sm:text-xs text-[#D4AF37]">In-App Tracking</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">For Prime Circle & Legacy tiers, the Wheel is digitized into a dynamic, gamified radar chart.</p>
+                    <div class="mt-3 sm:mt-4 p-3 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30">
+                        <p class="text-[10px] sm:text-xs text-[#D4AF37] font-semibold">⚡ Real-Time Expansion:</p>
+                        <p class="text-[10px] sm:text-xs text-gray-300 mt-1">As you log workouts, post Thundr updates, or complete courses, your wheel visually expands in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-[#0F172A]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h3 class="responsive-h2 font-bold mb-3 sm:mb-4">The <span class="gradient-text">Philosophical Alignment</span></h3>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 md:p-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] sm:text-xs font-semibold mb-3 sm:mb-4">CORE PRINCIPLE</div>
+                        <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">"Faith as Foundation, Not Decoration"</h4>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
+                            In secular personal development, the Wheel of Life treats "Career" and "Spirituality" as equal, optional slices. 
+                            <strong class="text-[#D4AF37]">In Prime Vanguard, Faith is the axle.</strong>
+                        </p>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                            If the axle is broken, it doesn't matter how shiny the "Finance" or "Fitness" slices are—the wheel will detach, and the man will crash.
+                        </p>
+                    </div>
+                    <div class="relative order-first md:order-last">
+                        <div class="aspect-square rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-[#10B981]/20 p-6 sm:p-8 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-5xl sm:text-6xl mb-3 sm:mb-4">⚙️</div>
+                                <div class="text-base sm:text-lg font-bold text-[#D4AF37]">The Axle Holds All</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mt-2">Without Faith, everything wobbles</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#D4AF37]/20">
+                    <div class="inline-block px-3 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-[10px] sm:text-xs font-semibold mb-3 sm:mb-4">SECONDARY PRINCIPLE</div>
+                    <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">"Legacy Over Likes"</h4>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                        Many ambitious young men in the Arab world build a massive "Career/Finance" slice to impress people on Instagram, 
+                        while their "Family/Brotherhood" and "Faith" slices are completely flat. 
+                        <strong class="text-[#D4AF37]">Prime Vanguard uses the Wheel to expose this illusion</strong> and force you to build a life that actually matters 
+                        in the sight of Allah and your descendants.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 md:p-12 border-[#D4AF37]/40">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Ready to Forge Your Wheel?</h3>
+                <p class="text-gray-300 text-sm sm:text-base mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+                    Membership is by application and interview only. We protect the culture at all costs. 
+                    If you're ready to stop walking alone and start building your legacy, apply now.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+                    <a href="https://forms.gle/16bsDwQH7B3XLAh2A" target="_blank" rel="noopener noreferrer" class="touch-btn px-6 sm:px-8 py-3 rounded-lg bg-[#D4AF37] text-[#0F172A] font-bold hover:bg-[#E5C158] transition pulse-gold text-center">
+                        Apply to Join
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#D4AF37]/20 py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <img src="public/Prime Vanguard-Logo.png" alt="Prime Vanguard Logo" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full">
+                <span class="text-xs sm:text-sm font-bold text-white tracking-wider">PRIME VANGUARD</span>
+            </img>
+            <p class="text-[10px] sm:text-xs text-gray-500 px-4">Excellence over ease. Brotherhood over ego. Action over theory. Legacy over likes. Faith as foundation.</p>
+            <p class="text-[10px] sm:text-xs text-gray-600 mt-2">© 2025 Prime Vanguard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
+
