@@ -2,6 +2,8 @@
 
 An interactive wheel of life assessment tool for Prime Vanguard, focused on 5 non-negotiable pillars of mastery.
 
+## Live Demo
+
 Live Link: https://prime-vanguard.github.io/Prime-Vanguard-Wheel-Of-Life/
 
 ## Project Structure
