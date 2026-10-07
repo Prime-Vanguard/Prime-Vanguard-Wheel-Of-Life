@@ -590,16 +590,30 @@
     price: "Subscription: 1000 EGP per month.",
     restart: "Retake the assessment",
     strip_h: "Five pillars, one wheel",
-    pn1: "Faith (The Axle)",
-    pn2: "Fitness (The Frame)",
-    pn3: "Finance (The Fuel)",
-    pn4: "Intellect (The Compass)",
-    pn5: "Legacy & Brotherhood (The Destination)",
-    pl1: "Faith is a foundation, not decoration.",
-    pl2: "Turn your body into armor.",
-    pl3: "Guard the trust and build the fortress.",
-    pl4: "Raise your mind and set your future.",
-    pl5: "Unity. Honor. Authenticity.",
+    strip_lead: "Faith is the axle and the other pillars are the spokes. Each has its role, and if one breaks, the whole wheel stops.",
+    pc_plan: "Your free 7-day plan",
+    pc1_role: "The Axle",
+    pc1_name: "Faith & Spiritual Commitment",
+    pc1_desc: "The center that holds the wheel together. If your relationship with Allah is weak, every other area of your life will eventually wobble.",
+    pc1_plan: "The Fajr Front",
+    pc2_role: "The Frame",
+    pc2_name: "Fitness & Physical Armor",
+    pc2_desc: "The vessel that carries your mission. You cannot carry a heavy legacy in a weak body.",
+    pc2_plan: "The Four Liters and Iron Protocol",
+    pc3_role: "The Fuel",
+    pc3_name: "Finance & Wealth Building",
+    pc3_desc: "The resources that protect your family, fund your ventures, and let you give Sadaqah and Zakat.",
+    pc3_plan: "The Financial Fortress",
+    pc4_role: "The Compass",
+    pc4_name: "Intellect & Personal Development",
+    pc4_desc: "The mindset, emotional intelligence and continuous learning that let you navigate challenges and set your direction.",
+    pc4_plan: "The Skill Hour",
+    pc5_role: "The Destination",
+    pc5_name: "Legacy & Brotherhood",
+    pc5_desc: "Your impact on the Ummah, your contribution to your community, and the brothers you lift along the way.",
+    pc5_plan: "The Brotherhood Lifeline",
+    strip_cta_text: "Not sure which pillar is your flat tire?",
+    strip_cta: "Find out in two minutes",
     founder_h: "A word from the founder",
     founder_p: "I will not sell you an illusion. Prime Vanguard is at its beginning, and we are building it with brothers who believe discipline is built by structure and brotherhood, not temporary hype. If that is you, apply.",
     founder_sig: "\u2014 Founder, Prime Vanguard",
@@ -694,6 +708,10 @@
     });
 
     $("start-btn").addEventListener("click", startAssessment);
+    $("strip-cta").addEventListener("click", function (e) {
+      e.preventDefault();
+      startAssessment();
+    });
     $("back-btn").addEventListener("click", goBack);
     $("restart-btn").addEventListener("click", startAssessment);
     $("lang-btn").addEventListener("click", function () {
