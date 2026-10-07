@@ -12,7 +12,7 @@
   var FORM_REEL_ENTRY = "entry.1969345638";
 
   // Canonical pillar order: Faith (axle) first, tie-break follows this order.
-  var PILLARS = [
+  var PILLARS_AR = [
     {
       name: "الإيمان",
       short: "الإيمان",
@@ -110,6 +110,106 @@
     }
   ];
 
+  var PILLARS_EN = [
+    {
+      name: "Faith",
+      short: "Faith",
+      metaphor: "The Axle",
+      question: "How consistently do you pray on time?",
+      plan: {
+        title: "The Fajr Front",
+        days: [
+          "Set a Fajr alarm, sleep early, and pray Fajr on time.",
+          "Pray Fajr on time, then read the morning adhkar.",
+          "Pray Fajr in congregation if you can, and tell a brother about your commitment.",
+          "Hold Fajr, and add two rak'ahs of Duha.",
+          "Pray Fajr on time and read one page of the Quran after it.",
+          "Pray Fajr. If you miss it, find out why and fix it tonight.",
+          "Close the week with Fajr on time, and write down what has changed in you."
+        ]
+      },
+      disclaimer: null
+    },
+    {
+      name: "Fitness",
+      short: "Fitness",
+      metaphor: "The Frame",
+      question: "How consistently do you train?",
+      plan: {
+        title: "The Four Liters and Iron Protocol",
+        days: [
+          "Drink water steadily through the day, aiming for four liters unless your doctor advises otherwise, and walk twenty minutes.",
+          "A full-body strength session of forty minutes, with protein at every main meal.",
+          "Water and a walk, and sleep at least seven hours.",
+          "A second full-body strength session.",
+          "Active rest: walking and light stretching, with water and protein.",
+          "A third full-body strength session.",
+          "Review your week and write next week's training schedule."
+        ]
+      },
+      disclaimer: "Consult a physician before starting any new program."
+    },
+    {
+      name: "Finance",
+      short: "Finance",
+      metaphor: "The Fuel",
+      question: "How well do you know where your money goes each month?",
+      plan: {
+        title: "The Financial Fortress",
+        days: [
+          "Record everything you spent today, big or small.",
+          "Review the last seven days of spending and sort it into needed and unneeded.",
+          "Write down your monthly income and fixed expenses.",
+          "Pick a small fixed amount to save and transfer it right away.",
+          "Make today a day with no unnecessary spending.",
+          "Learn one financial concept from a trusted source, and check that it is Shariah-compliant.",
+          "Set a simple monthly budget and write it where you will see it."
+        ]
+      },
+      disclaimer: "Financial education only \u2014 not certified financial advice."
+    },
+    {
+      name: "Intellect",
+      short: "Intellect",
+      metaphor: "The Compass",
+      question: "How often do you learn a new skill and actually apply it, not just watch?",
+      plan: {
+        title: "The Skill Hour",
+        days: [
+          "Choose one skill you want to master and write down why.",
+          "One focused hour of learning, phone away.",
+          "One hour of hands-on practice: produce something, even if it is small.",
+          "One focused hour of learning, phone away.",
+          "One hour of practice, then show what you made to a brother.",
+          "Read twenty pages of a useful book.",
+          "Review what you achieved and decide your next step."
+        ]
+      },
+      disclaimer: null
+    },
+    {
+      name: "Legacy & Brotherhood",
+      short: "Legacy",
+      metaphor: "The Destination",
+      question: "How many brothers hold you accountable and support you?",
+      plan: {
+        title: "The Brotherhood Lifeline",
+        days: [
+          "Write the names of three brothers who support you and three you can support.",
+          "Call a brother you have not spoken to in a while and ask how he is.",
+          "Help a brother with one specific thing.",
+          "Ask a brother to hold you accountable to one goal this week.",
+          "Call a member of your family.",
+          "Give what charity you can.",
+          "Review who you helped and who helped you, and decide what you will keep doing."
+        ]
+      },
+      disclaimer: null
+    }
+  ];
+  var PILLARS = PILLARS_AR;
+  var lang = "ar";
+
   var TOTAL = PILLARS.length;
   var AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
   var scores = [0, 0, 0, 0, 0];
@@ -120,10 +220,16 @@
     return document.getElementById(id);
   }
 
-  function toAr(value) {
+  // Arabic-Indic digits in Arabic, Western digits in English.
+  function num(value) {
+    if (lang !== "ar") return String(value);
     return String(value).replace(/\d/g, function (d) {
       return AR_DIGITS.charAt(d);
     });
+  }
+
+  function t(ar, en) {
+    return lang === "ar" ? ar : en;
   }
 
   function reducedMotion() {
@@ -135,6 +241,7 @@
     try {
       window.dispatchEvent(new CustomEvent("pv:event", { detail: { name: name } }));
       if (typeof window.pvTrack === "function") window.pvTrack(name);
+      if (window.umami && typeof window.umami.track === "function") window.umami.track(name);
     } catch (e) {
       /* ignore */
     }
@@ -205,6 +312,10 @@
       labels.push(label);
     }
 
+    function relabel() {
+      for (var q = 0; q < TOTAL; q++) labels[q].textContent = PILLARS[q].short;
+    }
+
     var current = [0, 0, 0, 0, 0];
     var raf = null;
 
@@ -232,6 +343,10 @@
     }
 
     return {
+      relabel: relabel,
+      redraw: function (flat) {
+        draw(current, flat);
+      },
       set: function (target, flat) {
         if (raf) cancelAnimationFrame(raf);
         var from = current.slice();
@@ -275,15 +390,27 @@
     }
   }
 
+  function scaleLabel(n) {
+    return t(num(n) + " من ١٠", n + " out of 10");
+  }
+
+  function relabelScale() {
+    var buttons = $("scale").children;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].textContent = num(i + 1);
+      buttons[i].setAttribute("aria-label", scaleLabel(i + 1));
+    }
+  }
+
   function buildScale() {
     var scale = $("scale");
     for (var n = 1; n <= 10; n++) {
       var btn = document.createElement("button");
       btn.type = "button";
-      btn.textContent = toAr(n);
+      btn.textContent = num(n);
       btn.setAttribute("data-value", n);
       btn.setAttribute("aria-pressed", "false");
-      btn.setAttribute("aria-label", toAr(n) + " من ١٠");
+      btn.setAttribute("aria-label", scaleLabel(n));
       btn.addEventListener("click", onPick);
       scale.appendChild(btn);
     }
@@ -294,7 +421,7 @@
     $("step-title").textContent = p.name;
     $("step-metaphor").textContent = "(" + p.metaphor + ")";
     $("step-question").textContent = p.question;
-    $("step-count").textContent = "السؤال " + toAr(step + 1) + " من " + toAr(TOTAL);
+    $("step-count").textContent = t("السؤال " + num(step + 1) + " من " + num(TOTAL), "Question " + (step + 1) + " of " + TOTAL);
     var bar = document.querySelector(".progress");
     bar.setAttribute("aria-valuenow", step);
     $("progress-fill").style.inlineSize = (step / TOTAL) * 100 + "%";
@@ -331,6 +458,7 @@
     step = 0;
     show($("hero"), false);
     show($("result"), false);
+    resultShown = false;
     show($("assessment"), true);
     renderStep();
     track("assessment_start");
@@ -353,12 +481,25 @@
 
   // ---------- Result ----------
   function band(score) {
-    if (score <= 3) return "حرجة";
-    if (score <= 6) return "مهتزّة";
-    return "متينة";
+    if (score <= 3) return t("حرجة", "Critical");
+    if (score <= 6) return t("مهتزّة", "Shaky");
+    return t("متينة", "Solid");
   }
 
+  var resultShown = false;
+
   function finish() {
+    show($("assessment"), false);
+    show($("result"), true);
+    resultShown = true;
+    $("progress-fill").style.inlineSize = "100%";
+    track("assessment_complete");
+    renderResult();
+    scrollTo($("result"));
+    $("result-title").focus({ preventScroll: true });
+  }
+
+  function renderResult() {
     var sum = 0;
     var flat = 0;
     for (var i = 0; i < TOTAL; i++) {
@@ -371,18 +512,21 @@
     var balanced = lowest >= 8;
     var pillar = PILLARS[flat];
 
-    $("score-value").textContent = toAr(average.toFixed(1)) + "/" + toAr(10);
+    $("score-value").textContent = num(average.toFixed(1)) + "/" + num(10);
     $("flat-line").innerHTML = "";
-    var lead = document.createTextNode(balanced ? "أضعف أركانك: " : "الإطار المثقوب: ");
+    var lead = document.createTextNode(
+      balanced ? t("أضعف أركانك: ", "Weakest pillar: ") : t("الإطار المثقوب: ", "Your flat tire: ")
+    );
     var name = document.createElement("span");
     name.className = "flat-name";
     name.textContent = pillar.name;
     $("flat-line").appendChild(lead);
     $("flat-line").appendChild(name);
-    $("band-line").textContent = "الحالة: " + band(lowest) + " (" + toAr(lowest) + "/" + toAr(10) + ")";
+    $("band-line").textContent =
+      t("الحالة: ", "Status: ") + band(lowest) + " (" + num(lowest) + "/" + num(10) + ")";
     $("truth-line").textContent = balanced
-      ? "عجلتك متوازنة. حافظ عليها وارفع أضعف أركانها."
-      : "إطار واحد مثقوب يوقف العجلة كلها.";
+      ? t("عجلتك متوازنة. حافظ عليها وارفع أضعف أركانها.", "Your wheel is balanced. Keep it that way and lift your weakest pillar.")
+      : t("إطار واحد مثقوب يوقف العجلة كلها.", "One flat tire stops the whole wheel.");
 
     var disclaimer = $("result-disclaimer");
     if (pillar.disclaimer) {
@@ -392,7 +536,7 @@
       show(disclaimer, false);
     }
 
-    $("plan-heading").textContent = "خطتك لسبعة أيام: " + pillar.plan.title;
+    $("plan-heading").textContent = t("خطتك لسبعة أيام: ", "Your 7-day plan: ") + pillar.plan.title;
     $("plan-days").innerHTML = "";
     pillar.plan.days.forEach(function (text) {
       var li = document.createElement("li");
@@ -401,33 +545,141 @@
     });
     // The plan is intro-ed with the pillar name.
     var note = document.querySelector(".plan-note");
-    note.textContent = "هذه الخطة مجانية ولا تتطلب أي بيانات. ابدأ تحدّي الأيام السبعة المناسب لركن " + pillar.name + ".";
+    note.textContent = t(
+      "هذه الخطة مجانية ولا تتطلب أي بيانات. ابدأ تحدّي الأيام السبعة المناسب لركن " + pillar.name + ".",
+      "This plan is free and needs no data. Start the 7-day challenge for " + pillar.name + "."
+    );
 
-    $("copy-reminder").textContent =
-      "اكتب نتيجتك في نموذج التقديم: درجتك " +
-      toAr(average.toFixed(1)) +
-      "/" +
-      toAr(10) +
-      "، والإطار المثقوب هو " +
-      pillar.name +
-      ".";
+    $("copy-reminder").textContent = t(
+      "اكتب نتيجتك في نموذج التقديم: درجتك " + num(average.toFixed(1)) + "/" + num(10) + "، والإطار المثقوب هو " + pillar.name + ".",
+      "Enter your result in the application form: your score is " + average.toFixed(1) + "/10, and your flat tire is " + pillar.name + "."
+    );
 
     var svg = $("wheel-result");
     svg.setAttribute(
       "aria-label",
-      "مخطط عجلتك. متوسط الدرجات " + toAr(average.toFixed(1)) + " من ١٠. أضعف الأركان: " + pillar.name
+      t(
+        "مخطط عجلتك. متوسط الدرجات " + num(average.toFixed(1)) + " من ١٠. أضعف الأركان: " + pillar.name,
+        "Your wheel chart. Average score " + average.toFixed(1) + " out of 10. Weakest pillar: " + pillar.name
+      )
     );
-
-    show($("assessment"), false);
-    show($("result"), true);
-    $("progress-fill").style.inlineSize = "100%";
-    track("assessment_complete");
-    scrollTo($("result"));
-    $("result-title").focus({ preventScroll: true });
     resultWheel.set(scores, balanced ? -1 : flat);
   }
 
+  // ---------- Language ----------
+  var EN = {
+    skip: "Skip to content",
+    hero_title: "Where is the flat tire in your life?",
+    hero_lead: "Rate yourself across five pillars in two minutes and see your wheel as it really is. Your weakest point is what stops it from rolling.",
+    start: "Start your wheel assessment",
+    micro: "Free \u2022 No sign-up \u2022 Two minutes",
+    noscript: "This assessment needs JavaScript enabled in your browser.",
+    back: "Back",
+    anc1: "1 = Absent",
+    anc3: "5 = Sometimes yes, sometimes no",
+    anc5: "10 = Steady every day",
+    result_title: "Your result",
+    score_label: "Your wheel average",
+    honesty: "This is a self-assessment for awareness, not a diagnosis.",
+    apply_h: "Ready to stop walking alone?",
+    apply_btn: "Apply to join",
+    step1: "Submit your application.",
+    step2: "A team member will message you on WhatsApp for a short text chat.",
+    step3: "If you are a fit, we welcome you and start your journey.",
+    honest: "Membership in the private community is by application and subscription only, to protect the quality of the brotherhood.",
+    price: "Subscription: 1000 EGP per month.",
+    restart: "Retake the assessment",
+    strip_h: "Five pillars, one wheel",
+    pn1: "Faith (The Axle)",
+    pn2: "Fitness (The Frame)",
+    pn3: "Finance (The Fuel)",
+    pn4: "Intellect (The Compass)",
+    pn5: "Legacy & Brotherhood (The Destination)",
+    pl1: "Faith is a foundation, not decoration.",
+    pl2: "Turn your body into armor.",
+    pl3: "Guard the trust and build the fortress.",
+    pl4: "Raise your mind and set your future.",
+    pl5: "Unity. Honor. Authenticity.",
+    founder_h: "A word from the founder",
+    founder_p: "I will not sell you an illusion. Prime Vanguard is at its beginning, and we are building it with brothers who believe discipline is built by structure and brotherhood, not temporary hype. If that is you, apply.",
+    founder_sig: "\u2014 Founder, Prime Vanguard",
+    faq_h: "Frequently asked questions",
+    q1: "Is the community free?",
+    a1: "The WhatsApp community is free and opens to you after you apply. The private in-app community is paid by subscription.",
+    q2: "How long does the assessment take?",
+    a2: "About two minutes. Five questions, no sign-up.",
+    q3: "What happens to my data?",
+    a3: "This page collects no data and stores nothing. You enter your details only in the application form, if you decide to apply.",
+    q4: "Who reviews my application?",
+    a4: "A member of the Prime Vanguard team, through a short text chat on WhatsApp. No voice calls.",
+    q5: "How much does membership cost?",
+    a5: "1000 EGP per month, and membership is by application only.",
+    legal_fin: "Financial education only \u2014 not certified financial advice.",
+    legal_fit: "Consult a physician before starting any new program.",
+    legal_copy: "\u00a9 2026 Prime Vanguard. All rights reserved."
+  };
+  var AR = {};
+  var TITLE = { ar: "Prime Vanguard | عجلة الإتقان", en: "Prime Vanguard | Wheel of Mastery" };
+
+  function captureArabic() {
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute("data-i18n");
+      if (!(key in AR)) AR[key] = nodes[i].textContent;
+    }
+  }
+
+  function initialLang() {
+    try {
+      return new URLSearchParams(window.location.search).get("lang") === "en" ? "en" : "ar";
+    } catch (e) {
+      return "ar";
+    }
+  }
+
+  function applyLang(next, fromToggle) {
+    lang = next;
+    PILLARS = lang === "en" ? PILLARS_EN : PILLARS_AR;
+    var root = document.documentElement;
+    root.setAttribute("lang", lang);
+    root.setAttribute("dir", lang === "en" ? "ltr" : "rtl");
+    document.title = TITLE[lang];
+
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute("data-i18n");
+      nodes[i].textContent = lang === "en" ? EN[key] : AR[key];
+    }
+
+    var btn = $("lang-btn");
+    btn.textContent = lang === "en" ? "العربية" : "English";
+    btn.setAttribute("lang", lang === "en" ? "ar" : "en");
+    btn.setAttribute("aria-label", lang === "en" ? "التبديل إلى العربية" : "Switch to English");
+    document.querySelector(".progress").setAttribute("aria-label", t("تقدّم التقييم", "Assessment progress"));
+    $("wheel-result").setAttribute("aria-label", t("مخطط عجلتك", "Your wheel chart"));
+    $("score-value").setAttribute("dir", "ltr");
+
+    liveWheel.relabel();
+    resultWheel.relabel();
+    relabelScale();
+    if (!$("assessment").hasAttribute("hidden")) renderStep();
+    if (resultShown) renderResult();
+
+    if (fromToggle) {
+      try {
+        var u = new URL(window.location.href);
+        if (lang === "en") u.searchParams.set("lang", "en");
+        else u.searchParams.delete("lang");
+        history.replaceState(null, "", u.pathname + u.search + u.hash);
+      } catch (e) {
+        /* ignore */
+      }
+      track("language_" + lang);
+    }
+  }
+
   function init() {
+    captureArabic();
     liveWheel = createWheel($("wheel-live"));
     resultWheel = createWheel($("wheel-result"));
     buildScale();
@@ -444,6 +696,10 @@
     $("start-btn").addEventListener("click", startAssessment);
     $("back-btn").addEventListener("click", goBack);
     $("restart-btn").addEventListener("click", startAssessment);
+    $("lang-btn").addEventListener("click", function () {
+      applyLang(lang === "en" ? "ar" : "en", true);
+    });
+    if (initialLang() === "en") applyLang("en", false);
 
     track("page_view");
   }

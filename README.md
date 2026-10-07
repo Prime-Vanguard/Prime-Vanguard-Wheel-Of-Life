@@ -41,3 +41,11 @@ No build step, no external scripts or CDNs. Open `index.html` through any static
 ## Editing copy
 
 All Arabic text is in `index.html` and the `PILLARS` array at the top of `js/main.js` (questions and the 7-day plans). Domain and canonical: the canonical link points to the GitHub Pages URL until primevanguard.com is live.
+
+## Language
+
+Arabic (Modern Standard Arabic, RTL) is the default. The header button switches to English (LTR) without reloading, and the choice is reflected as `?lang=en` so a link can open the English page. Nothing is stored. English copy lives in `PILLARS_EN` and the `EN` dictionary in `js/main.js`; Arabic text is read from `index.html` (`data-i18n` attributes).
+
+## Analytics
+
+No vendor is loaded yet. `track()` fires a `pv:event` window event, calls `window.pvTrack(name)` if defined and `window.umami.track(name)` if present. Events: page_view, assessment_start, pillar_done_1..5, assessment_complete, apply_click, language_ar, language_en.

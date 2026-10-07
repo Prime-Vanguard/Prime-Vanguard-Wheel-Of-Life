@@ -362,3 +362,24 @@ details p { padding-inline: 1rem; margin-block-end: 1rem; }
   html { scroll-behavior: auto; }
   .progress-fill { transition: none; }
 }
+
+/* Language toggle */
+.lang-btn {
+  margin-inline-start: auto;
+  min-block-size: var(--tap);
+  padding: 0.25rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.lang-btn:hover { border-color: var(--gold); }
+.lang-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.wheel { direction: ltr; }
+html[lang="en"] ol { list-style-type: decimal; }
+html[lang="en"] .plan-days,
+html[lang="en"] .next-steps { list-style-type: decimal; }
+html[lang="en"] .tagline-ar { display: none; }

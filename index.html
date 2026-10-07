@@ -28,12 +28,13 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+    <a class="skip-link" href="#main" data-i18n="skip">انتقل إلى المحتوى</a>
 
     <header class="site-header">
         <div class="wrap header-inner">
             <span class="logo-badge"><img src="public/logo.svg" alt="" width="44" height="44"></span>
             <span class="brand">PRIME VANGUARD</span>
+            <button type="button" class="lang-btn" id="lang-btn" lang="en" aria-label="Switch to English">English</button>
         </div>
     </header>
 
@@ -41,11 +42,11 @@
         <!-- 1. Hero -->
         <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="wrap">
-                <h1 id="hero-title">أين الإطار المثقوب في حياتك؟</h1>
-                <p class="lead">قيِّم نفسك في خمسة أركان خلال دقيقتين، وسترى عجلتك على حقيقتها، وأضعف نقطة فيها تُعطّل حركتها.</p>
-                <button type="button" class="btn btn-gold" id="start-btn">ابدأ تقييم عجلتك</button>
-                <p class="microline">تقييم مجاني • دون تسجيل • دقيقتان</p>
-                <noscript><p class="noscript">يحتاج هذا التقييم إلى تفعيل JavaScript في المتصفح.</p></noscript>
+                <h1 id="hero-title" data-i18n="hero_title">أين الإطار المثقوب في حياتك؟</h1>
+                <p class="lead" data-i18n="hero_lead">قيِّم نفسك في خمسة أركان خلال دقيقتين، وسترى عجلتك على حقيقتها، وأضعف نقطة فيها تُعطّل حركتها.</p>
+                <button type="button" class="btn btn-gold" id="start-btn" data-i18n="start">ابدأ تقييم عجلتك</button>
+                <p class="microline" data-i18n="micro">تقييم مجاني • دون تسجيل • دقيقتان</p>
+                <noscript><p class="noscript" data-i18n="noscript">يحتاج هذا التقييم إلى تفعيل JavaScript في المتصفح.</p></noscript>
             </div>
         </section>
 
@@ -62,8 +63,8 @@
                     <h2 id="step-title" tabindex="-1"></h2>
                     <p class="question" id="step-question"></p>
                     <div class="scale" id="scale" role="group" aria-labelledby="step-question"></div>
-                    <p class="anchors"><span>١ = غير موجود</span><span>٥ = أحيانًا نعم وأحيانًا لا</span><span>١٠ = ثابت كل يوم</span></p>
-                    <button type="button" class="btn btn-ghost" id="back-btn">رجوع</button>
+                    <p class="anchors"><span data-i18n="anc1">١ = غير موجود</span><span data-i18n="anc3">٥ = أحيانًا نعم وأحيانًا لا</span><span data-i18n="anc5">١٠ = ثابت كل يوم</span></p>
+                    <button type="button" class="btn btn-ghost" id="back-btn" data-i18n="back">رجوع</button>
                 </div>
 
                 <div class="wheel-wrap wheel-mini" aria-hidden="true">
@@ -75,19 +76,19 @@
         <!-- 3. Result -->
         <section class="result" id="result" aria-labelledby="result-title" hidden>
             <div class="wrap">
-                <h2 id="result-title" tabindex="-1">نتيجتك</h2>
+                <h2 id="result-title" tabindex="-1" data-i18n="result_title">نتيجتك</h2>
 
                 <div class="wheel-wrap">
                     <svg id="wheel-result" class="wheel" viewBox="0 0 320 320" role="img" aria-label="مخطط عجلتك"></svg>
                 </div>
 
                 <div class="card result-card">
-                    <p class="score-label">متوسط عجلتك</p>
+                    <p class="score-label" data-i18n="score_label">متوسط عجلتك</p>
                     <p class="score" id="score-value" dir="ltr"></p>
                     <p class="flat" id="flat-line"></p>
                     <p class="band" id="band-line"></p>
                     <p class="truth" id="truth-line"></p>
-                    <p class="honesty">هذا تقييم ذاتي للتوعية، وليس تشخيصًا.</p>
+                    <p class="honesty" data-i18n="honesty">هذا تقييم ذاتي للتوعية، وليس تشخيصًا.</p>
                     <p class="disclaimer" id="result-disclaimer" hidden></p>
                 </div>
 
@@ -100,32 +101,32 @@
 
                 <!-- 4. Apply -->
                 <div class="card apply-card" id="apply">
-                    <h3>هل أنت مستعد لتتوقف عن السير وحدك؟</h3>
+                    <h3 data-i18n="apply_h">هل أنت مستعد لتتوقف عن السير وحدك؟</h3>
                     <p class="copy-reminder" id="copy-reminder"></p>
-                    <a class="btn btn-gold" id="apply-btn" href="#" target="_blank" rel="noopener noreferrer">قدّم طلب الانضمام</a>
+                    <a class="btn btn-gold" id="apply-btn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="apply_btn">قدّم طلب الانضمام</a>
                     <ol class="next-steps">
-                        <li>قدّم طلبك.</li>
-                        <li>سيراسلك أحد أعضاء الفريق على واتساب في محادثة نصية قصيرة.</li>
-                        <li>إن كنت مناسبًا رحّبنا بك وبدأنا رحلتك.</li>
+                        <li data-i18n="step1">قدّم طلبك.</li>
+                        <li data-i18n="step2">سيراسلك أحد أعضاء الفريق على واتساب في محادثة نصية قصيرة.</li>
+                        <li data-i18n="step3">إن كنت مناسبًا رحّبنا بك وبدأنا رحلتك.</li>
                     </ol>
-                    <p class="honest-line">العضوية في المجتمع الخاص بالتقديم فقط وبالاشتراك، حفاظًا على مستوى الأخوّة.</p>
-                    <p class="price-line">الاشتراك ١٠٠٠ جنيه مصري شهريًا.</p>
+                    <p class="honest-line" data-i18n="honest">العضوية في المجتمع الخاص بالتقديم فقط وبالاشتراك، حفاظًا على مستوى الأخوّة.</p>
+                    <p class="price-line" data-i18n="price">الاشتراك ١٠٠٠ جنيه مصري شهريًا.</p>
                 </div>
 
-                <button type="button" class="btn btn-ghost" id="restart-btn">أعد التقييم</button>
+                <button type="button" class="btn btn-ghost" id="restart-btn" data-i18n="restart">أعد التقييم</button>
             </div>
         </section>
 
         <!-- 5. Pillar strip -->
         <section class="strip" aria-labelledby="strip-title">
             <div class="wrap">
-                <h2 id="strip-title">خمسة أركان لعجلة واحدة</h2>
+                <h2 id="strip-title" data-i18n="strip_h">خمسة أركان لعجلة واحدة</h2>
                 <ul class="pillar-list">
-                    <li><strong>الإيمان (المحور)</strong><span>الإيمان أساس لا ديكور.</span></li>
-                    <li><strong>اللياقة (الهيكل)</strong><span>حوّل جسدك إلى درع.</span></li>
-                    <li><strong>المال (الوقود)</strong><span>احفظ الأمانة وابنِ الحصن.</span></li>
-                    <li><strong>العقل (البوصلة)</strong><span>ارفع عقلك وحدّد مستقبلك.</span></li>
-                    <li><strong>الإرث والأخوّة (الوجهة)</strong><span>وحدة. شرف. أصالة.</span></li>
+                    <li><strong data-i18n="pn1">الإيمان (المحور)</strong><span data-i18n="pl1">الإيمان أساس لا ديكور.</span></li>
+                    <li><strong data-i18n="pn2">اللياقة (الهيكل)</strong><span data-i18n="pl2">حوّل جسدك إلى درع.</span></li>
+                    <li><strong data-i18n="pn3">المال (الوقود)</strong><span data-i18n="pl3">احفظ الأمانة وابنِ الحصن.</span></li>
+                    <li><strong data-i18n="pn4">العقل (البوصلة)</strong><span data-i18n="pl4">ارفع عقلك وحدّد مستقبلك.</span></li>
+                    <li><strong data-i18n="pn5">الإرث والأخوّة (الوجهة)</strong><span data-i18n="pl5">وحدة. شرف. أصالة.</span></li>
                 </ul>
             </div>
         </section>
@@ -133,38 +134,38 @@
         <!-- 6. Founder note -->
         <section class="founder" aria-labelledby="founder-title">
             <div class="wrap">
-                <h2 id="founder-title" class="sr-only">كلمة المؤسس</h2>
+                <h2 id="founder-title" class="sr-only" data-i18n="founder_h">كلمة المؤسس</h2>
                 <blockquote class="card">
-                    <p>لن أبيع لك وهمًا. Prime Vanguard في بدايته، ونبنيه مع إخوة يؤمنون أن الانضباط يُبنى بنظام وأخوّة لا بحماس مؤقت. إن كان هذا كلامك فقدّم.</p>
-                    <footer>— مؤسس Prime Vanguard</footer>
+                    <p data-i18n="founder_p">لن أبيع لك وهمًا. Prime Vanguard في بدايته، ونبنيه مع إخوة يؤمنون أن الانضباط يُبنى بنظام وأخوّة لا بحماس مؤقت. إن كان هذا كلامك فقدّم.</p>
+                    <footer data-i18n="founder_sig">— مؤسس Prime Vanguard</footer>
                 </blockquote>
-                <a class="btn btn-gold" id="apply-btn-2" href="#" target="_blank" rel="noopener noreferrer">قدّم طلب الانضمام</a>
+                <a class="btn btn-gold" id="apply-btn-2" href="#" target="_blank" rel="noopener noreferrer" data-i18n="apply_btn">قدّم طلب الانضمام</a>
             </div>
         </section>
 
         <!-- 7. FAQ -->
         <section class="faq" aria-labelledby="faq-title">
             <div class="wrap">
-                <h2 id="faq-title">أسئلة شائعة</h2>
+                <h2 id="faq-title" data-i18n="faq_h">أسئلة شائعة</h2>
                 <details>
-                    <summary>هل المجتمع مجاني؟</summary>
-                    <p>مجتمع واتساب مجاني، ويُفتح لك بعد التقديم. أما المجتمع الخاص داخل التطبيق فبالاشتراك المدفوع.</p>
+                    <summary data-i18n="q1">هل المجتمع مجاني؟</summary>
+                    <p data-i18n="a1">مجتمع واتساب مجاني، ويُفتح لك بعد التقديم. أما المجتمع الخاص داخل التطبيق فبالاشتراك المدفوع.</p>
                 </details>
                 <details>
-                    <summary>كم يستغرق التقييم؟</summary>
-                    <p>دقيقتان تقريبًا، خمسة أسئلة فقط، دون تسجيل.</p>
+                    <summary data-i18n="q2">كم يستغرق التقييم؟</summary>
+                    <p data-i18n="a2">دقيقتان تقريبًا، خمسة أسئلة فقط، دون تسجيل.</p>
                 </details>
                 <details>
-                    <summary>ماذا يحدث لبياناتي؟</summary>
-                    <p>هذه الصفحة لا تجمع أي بيانات ولا تحفظ شيئًا. لا تُدخل بياناتك إلا في نموذج التقديم إن قررت التقديم.</p>
+                    <summary data-i18n="q3">ماذا يحدث لبياناتي؟</summary>
+                    <p data-i18n="a3">هذه الصفحة لا تجمع أي بيانات ولا تحفظ شيئًا. لا تُدخل بياناتك إلا في نموذج التقديم إن قررت التقديم.</p>
                 </details>
                 <details>
-                    <summary>من يراجع طلبي؟</summary>
-                    <p>أحد أعضاء فريق Prime Vanguard، عبر محادثة نصية قصيرة على واتساب. لا مكالمات صوتية.</p>
+                    <summary data-i18n="q4">من يراجع طلبي؟</summary>
+                    <p data-i18n="a4">أحد أعضاء فريق Prime Vanguard، عبر محادثة نصية قصيرة على واتساب. لا مكالمات صوتية.</p>
                 </details>
                 <details>
-                    <summary>كم تبلغ تكلفة الاشتراك؟</summary>
-                    <p>١٠٠٠ جنيه مصري شهريًا، والعضوية بالتقديم فقط.</p>
+                    <summary data-i18n="q5">كم تبلغ تكلفة الاشتراك؟</summary>
+                    <p data-i18n="a5">١٠٠٠ جنيه مصري شهريًا، والعضوية بالتقديم فقط.</p>
                 </details>
             </div>
         </section>
@@ -172,11 +173,11 @@
 
     <footer class="site-footer">
         <div class="wrap">
-            <p class="legal">محتوى تعليمي مالي فقط، وليس نصيحة مالية معتمدة.</p>
-            <p class="legal">استشر طبيبًا قبل بدء أي برنامج رياضي جديد.</p>
+            <p class="legal" data-i18n="legal_fin">محتوى تعليمي مالي فقط، وليس نصيحة مالية معتمدة.</p>
+            <p class="legal" data-i18n="legal_fit">استشر طبيبًا قبل بدء أي برنامج رياضي جديد.</p>
             <p class="tagline" dir="ltr" lang="en">Excellence over ease. Legacy over likes.</p>
-            <p class="tagline">التميّز قبل الراحة. الإرث قبل الإعجابات.</p>
-            <p class="legal">© ٢٠٢٦ Prime Vanguard. جميع الحقوق محفوظة.</p>
+            <p class="tagline tagline-ar">التميّز قبل الراحة. الإرث قبل الإعجابات.</p>
+            <p class="legal" data-i18n="legal_copy">© ٢٠٢٦ Prime Vanguard. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
