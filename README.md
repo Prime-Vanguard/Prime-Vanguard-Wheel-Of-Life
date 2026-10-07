@@ -17,16 +17,6 @@ Live: https://prime-vanguard.github.io/Prime-Vanguard-Wheel-Of-Life/
 
 The page collects and stores nothing: no form, no cookies, no `localStorage`. Everything runs in memory. Applicants enter their details only in the Google Form.
 
-## Reel tracking
-
-Link each reel to the page with `?utm_content=<reel id>` (for example `?utm_content=reel03_hookA`). The apply buttons open the Form with one prefilled field, the reel code (`entry.1969345638`), set to that ID, or `direct` when there is none. Name, phone, age, score and pillar are never put in the link; applicants type their own score and flat-tire pillar into the Form.
-
-The Form entry IDs are in `js/main.js` (`FORM_URL`, `FORM_REEL_ENTRY`). If a Form field is deleted and recreated, its ID changes.
-
-## Analytics hook
-
-No analytics vendor is loaded yet. The page calls `window.pvTrack(name)` (if defined) and fires a `pv:event` event on `window` for: `page_view`, `assessment_start`, `pillar_done_1` to `pillar_done_5`, `assessment_complete`, `apply_click`. Events never carry scores or personal data.
-
 ## Structure
 
 ```
