@@ -1,92 +1,51 @@
-# Prime Vanguard Wheel of Life
+# Prime Vanguard Wheel of Mastery
 
-An interactive wheel of life assessment tool for Prime Vanguard, focused on 5 non-negotiable pillars of mastery.
+An Arabic (Modern Standard Arabic, right-to-left) self-assessment page for Prime Vanguard. The visitor rates five pillars, sees their wheel, their flat tire (الإطار المثقوب) and a free 7-day plan, then goes to the Google Form to apply.
 
-## Live Demo
+Live: https://prime-vanguard.github.io/Prime-Vanguard-Wheel-Of-Life/
 
-Live Link: https://prime-vanguard.github.io/Prime-Vanguard-Wheel-Of-Life/
+## What the page does
 
-## Project Structure
+1. Hero with one button that starts the assessment in place.
+2. Five screens in fixed order (Faith, Fitness, Finance, Intellect, Legacy and Brotherhood), one question each, a 1 to 10 selector that advances on tap, a back button and a live wheel.
+3. Result: SVG radar wheel, average score, the flat-tire pillar (lowest score; ties go to the earlier pillar, Faith first), a band line, and a balanced-wheel message when the lowest score is 8 or more.
+4. A free 7-day plan for the flat-tire pillar, with the fitness or finance disclaimer when relevant.
+5. Apply button to the Google Form, three "what happens next" steps, and the price line.
+6. Pillar strip, founder note, FAQ, footer with disclaimers and the tagline in English and Arabic.
+
+## Privacy
+
+The page collects and stores nothing: no form, no cookies, no `localStorage`. Everything runs in memory. Applicants enter their details only in the Google Form.
+
+## Reel tracking
+
+Link each reel to the page with `?utm_content=<reel id>` (for example `?utm_content=reel03_hookA`). The apply buttons open the Form with one prefilled field, the reel code (`entry.1969345638`), set to that ID, or `direct` when there is none. Name, phone, age, score and pillar are never put in the link; applicants type their own score and flat-tire pillar into the Form.
+
+The Form entry IDs are in `js/main.js` (`FORM_URL`, `FORM_REEL_ENTRY`). If a Form field is deleted and recreated, its ID changes.
+
+## Analytics hook
+
+No analytics vendor is loaded yet. The page calls `window.pvTrack(name)` (if defined) and fires a `pv:event` event on `window` for: `page_view`, `assessment_start`, `pillar_done_1` to `pillar_done_5`, `assessment_complete`, `apply_click`. Events never carry scores or personal data.
+
+## Structure
 
 ```
-Prime Vanguard Wheel of life/
-├── index.html          # Main HTML file
-├── css/
-│   └── styles.css      # Custom styles and animations
-├── js/
-│   └── main.js         # JavaScript functionality
-└── README.md           # This file
+index.html        Page (Arabic, RTL)
+css/styles.css    Styles (CSS logical properties, mobile first)
+js/main.js        Assessment, SVG wheel, plans, Form link
+public/           Logo (SVG), icons, share image, self-hosted Tajawal fonts (OFL)
 ```
 
-## Features
+No build step, no external scripts or CDNs. Open `index.html` through any static server to test (for example `python3 -m http.server`).
 
-- **Interactive Radar Chart**: Visual representation of 5 life pillars using Chart.js
-- **Real-time Assessment**: Sliders for each pillar with instant chart updates
-- **Data Persistence**: Scores are saved to localStorage
-- **Responsive Design**: Mobile-first approach with touch-friendly controls
-- **Accessibility**: Skip links, ARIA labels, keyboard navigation support
-- **Insights Panel**: Personalized recommendations based on weakest pillar
+## Editing copy
 
-## The 5 Pillars
+All Arabic text is in `index.html` and the `PILLARS` array at the top of `js/main.js` (questions and the 7-day plans). Domain and canonical: the canonical link points to the GitHub Pages URL until primevanguard.com is live.
 
-1. **Faith & Spiritual Commitment** (The Axle) - Foundation for all other pillars
-2. **Fitness & Physical Armor** (The Chassis) - Physical vessel for legacy
-3. **Finance & Wealth Building** (The Fuel) - Resources for family and ventures
-4. **Personal Development & Intellect** (The Navigation) - Mindset and learning
-5. **Legacy & Brotherhood** (The Destination) - Impact on the Ummah
+## Language
 
-## Technologies Used
+Arabic (Modern Standard Arabic, RTL) is the default. The header button switches to English (LTR) without reloading, and the choice is reflected as `?lang=en` so a link can open the English page. Nothing is stored. English copy lives in `PILLARS_EN` and the `EN` dictionary in `js/main.js`; Arabic text is read from `index.html` (`data-i18n` attributes).
 
-- **HTML5** - Semantic markup
-- **Tailwind CSS** - Utility-first CSS framework (via CDN)
-- **Chart.js** - Radar chart visualization (via CDN)
-- **Vanilla JavaScript** - No framework dependencies
-- **Fontsource** - Inter and Tajawal fonts (via CDN)
+## Analytics
 
-## Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-- Requires JavaScript enabled
-
-## Development
-
-To run locally:
-
-1. Open `index.html` in a web browser
-2. No build process required
-3. All dependencies loaded via CDN
-
-## Customization
-
-- Modify pillar data in `js/main.js` (pillars array)
-- Adjust colors in `css/styles.css` (CSS variables)
-- Update content in `index.html`
-
-## Performance Optimizations
-
-- Debounced slider input (150ms delay)
-- Efficient chart updates
-- localStorage for data persistence
-- Responsive image handling
-
-## Accessibility Features
-
-- Skip to main content link
-- ARIA labels on interactive elements
-- Keyboard navigation support
-- Focus-visible states
-- Touch-friendly button sizes (44px minimum)
-- Screen reader friendly
-
-## SEO
-
-- Meta description and keywords
-- Open Graph tags for social sharing
-- Twitter Card tags
-- Canonical URL
-- Semantic HTML structure
-
-## License
-
-© 2026 Prime Vanguard. All rights reserved.
+No vendor is loaded yet. `track()` fires a `pv:event` window event, calls `window.pvTrack(name)` if defined and `window.umami.track(name)` if present. Events: page_view, assessment_start, pillar_done_1..5, assessment_complete, apply_click, language_ar, language_en.
